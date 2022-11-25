@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Danger.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="QuadMesh" id=2]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="QuadMesh" id=6]
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="QuadMesh" id=8]
+
+[sub_resource type="BoxShape" id=9]
+
+[sub_resource type="QuadMesh" id=10]
+
+[node name="World" type="Spatial"]
+
+[node name="Player" type="KinematicBody" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.0396419, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player"]
+mesh = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.10684 )
+current = true
+
+[node name="Ground collider" type="Area" parent="Player"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/Ground collider"]
+transform = Transform( 0.5, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.485213, 0 )
+shape = SubResource( 5 )
+
+[node name="left wall collider" type="Area" parent="Player"]
+transform = Transform( 0.2, 0, 0, 0, 1, 0, 0, 0, 1, -0.571689, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/left wall collider"]
+transform = Transform( 0.51, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.0364435, 0 )
+shape = SubResource( 5 )
+
+[node name="right wall collider" type="Area" parent="Player"]
+transform = Transform( 0.2, 0, 0, 0, 1, 0, 0, 0, 1, 0.524645, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/right wall collider"]
+transform = Transform( 0.51, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.0364435, 0 )
+shape = SubResource( 5 )
+
+[node name="roof collider" type="Area" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452481, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/roof collider"]
+transform = Transform( 0.51, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.0364435, 0 )
+shape = SubResource( 5 )
+
+[node name="Platform1" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.47551, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Platform1"]
+transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/CollisionShape"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape2" type="CollisionShape" parent="Platform1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25107, 1.94323, 0 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/CollisionShape2"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Platform1"]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -6.51865, 2.91588, 0 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/CollisionShape3"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Platform1"]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -10.1212, 5.22424, 0 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/CollisionShape4"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Platform1"]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -1.56515, 8.29039, 0 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/CollisionShape5"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="Danger" type="Area" parent="Platform1"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Platform1/Danger"]
+transform = Transform( 0.1, 0, 0, 0, 0.5, 0, 0, 0, 1, 1.26869, 0.955618, 0 )
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/Danger/CollisionShape"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, -0.0916619, 0 )
+mesh = SubResource( 10 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Platform1/Danger"]
+transform = Transform( 0.1, 0, 0, 0, 0.5, 0, 0, 0, 1, 1.6962, 0.955618, 0 )
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/Danger/CollisionShape2"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, -0.0916619, 0 )
+mesh = SubResource( 10 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Platform1/Danger"]
+transform = Transform( 0.1, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.06655, 0.955618, 0 )
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Platform1/Danger/CollisionShape3"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, -0.0916619, 0 )
+mesh = SubResource( 10 )
